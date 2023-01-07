@@ -152,9 +152,9 @@ router.get("/MyStocks", check, (req, res) => {
     res.send(req.rootdata);
 })
 
-router.get('/stocksData', (req,res) => {
+router.post('/stocksData', (req,res) => {
     console.log(req.body);
-    res.send("we are on stock data page");
+    res.send(req.body);
 });
 
 router.post("/:User/stocksData", async (req, res) => {
