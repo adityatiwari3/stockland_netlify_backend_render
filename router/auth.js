@@ -40,8 +40,9 @@ router.post("/Login", async (req, res) => {
     try {
 
         const { Email, Password } = req.body;
-
+        console.log("check4");
         if (!Email || !Password) {
+            console.log("check1",req.body);
             return res.status(400).json(0);
         }
         const userlogin = await Data.findOne({ Email: Email });
@@ -49,6 +50,7 @@ router.post("/Login", async (req, res) => {
             const isMatch = await bcrypt.compare(Password, userlogin.Password);
 
             if (!isMatch) {
+                console.log("check2");
                 res.status(400).json(0);
             }
             else {
@@ -63,6 +65,7 @@ router.post("/Login", async (req, res) => {
         }
         else {
             res.status(400).json(0);
+            console.log("check3");
         }
     }
     catch (err) {
@@ -150,6 +153,7 @@ router.get("/MyStocks", check, (req, res) => {
 })
 
 router.get('/stocksData', () => {
+    req.send("we are on stock data page")
 });
 
 router.post("/:User/stocksData", async (req, res) => {
